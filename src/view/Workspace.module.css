@@ -1,0 +1,10 @@
+.workspace {
+    /* Блочная модель */
+    padding: 20px;
+    margin: auto;
+    flex-grow: 1;
+ 
+    /* Оформление */
+    background-color: #4C585B;
+    border-left: 2px solid #ddd;
+}

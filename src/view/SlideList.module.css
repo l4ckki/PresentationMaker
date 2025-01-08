@@ -1,0 +1,19 @@
+.slideList {
+    /* Разное */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.item {
+    /* Блочная модель */
+    margin: 35px;
+
+    /* Оформление */
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.item.selected {
+    /* Оформление */
+    cursor: default;
+}

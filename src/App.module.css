@@ -1,0 +1,26 @@
+#root {
+    margin: 0 auto;
+    padding: 2rem;
+
+    max-width: 1200px;
+    width: 100%;
+
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+
+    background-color: #A5BFCC;
+    color: #333;
+}
+
+:root {
+    --topPanelHeight: 130px;
+    --accentColor: #1a73e8;
+    --buttonBackground: #ffa726;
+    --buttonHoverBackground: #ff9800;
+}
+
+.container {
+    display: flex;
+    height: calc(100vh - var(--topPanelHeight));
+    background-color: #7E99A3;
+}
