@@ -10,8 +10,7 @@ type AppProps = {
 
 function App({editor}: AppProps) {
     const selectedSlide = editor.presentation.slides.find(
-        (slide) => slide.id === editor.selection?.selectedSlideId
-    );
+        (slide) => slide.id === editor.selection?.selectedSlideId) || editor.presentation.slides[0];
 
     return (
         <>

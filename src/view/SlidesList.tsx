@@ -41,7 +41,9 @@ function SlidesList({slides, selection}: SlidesListProps) {
                         isSelected={slide.id == selection!.selectedSlideId}
                         className={slide.id == selection!.selectedSlideId ? 
                             `${styles.item}, ${styles.item, styles.selected}` : styles.item }
-                        selectedObjectId={selection!.selectedObjectId}
+                        selectedObjectId = {selection!.selectedObjectId}
+                        showResizeHandles = {false}
+                        disableElementDrag = {true}
                     ></DisplaySlide>
                 </div>
             )}

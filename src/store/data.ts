@@ -40,8 +40,7 @@
 
 
 const presentation: Presentation = {
-    id: "presentation",
-    title: "",
+    title: "выыв",
     slides: [slide1, slide2],
 }
 

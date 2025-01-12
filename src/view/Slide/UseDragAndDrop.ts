@@ -5,7 +5,9 @@ import { moveSlideElement } from "../../store/moveSlideElement";
 
 type DragAndDropProps = {
     slideId: string;
+    isDraggable?: boolean,
 }
+
 
 export function DragAndDrop({slideId}: DragAndDropProps) {
     const [isDragging, setIsDragging] = useState(false);

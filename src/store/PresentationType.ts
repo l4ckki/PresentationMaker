@@ -1,8 +1,9 @@
 export type Presentation = {
-    id: string;
     title: string;
     slides: SlideCollection;
 }
+
+export type SlideCollection = Array<Slide>;
 
 export type ElementItem = ImageItem | TextItem;
 
@@ -22,20 +23,18 @@ export type TextItem = BaseSlideObject & {
 export type Slide = {
     id: string;
     background: Background;
-    elements: ElementItem[];
+    elements: Array<ElementItem>;
 }
-
-export type SlideCollection = Slide[];
 
 export type Background = BackgroundSolid | BackgroundImage;
 
 export type BackgroundSolid = {
-    type: "solid";
+    type: 'solid';
     src: string;
 }
 
 export type BackgroundImage = {
-    type: "image";
+    type: 'image';
     src: string;
 }
 

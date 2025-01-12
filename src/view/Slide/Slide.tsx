@@ -5,8 +5,8 @@ import styles from "./Slide.module.css";
 import {CSSProperties} from "react";
 import { dispatch } from "../../store/editor";
 import { setSelection } from "../../store/setSelection";
-import { DragAndDrop } from "./DragAndDrop";
-import { ResizeElement } from './ResizeElement';
+import { DragAndDrop } from "./UseDragAndDrop";
+import { ResizeElement } from './UseResizeElement';
 
 const SLIDE_WIDTH: number = 900
 const SLIDE_HEIGHT: number = 500
@@ -18,22 +18,37 @@ type SlideProps = {
     className: string,
     selectedObjectId: string | null,
     showResizeHandles?: boolean;
+    disableElementDrag?: boolean;
 }
 
-export function DisplaySlide({slide, scale = 1, isSelected, className, selectedObjectId, showResizeHandles = true}: SlideProps)
+export function DisplaySlide({
+    slide, 
+    scale = 1, 
+    isSelected, 
+    className, 
+    selectedObjectId, 
+    showResizeHandles = true,
+    disableElementDrag =  false,
+}: SlideProps)
 {
-    const { isDragging, handleElementMD, handleElementMM, handleElementMU} = DragAndDrop({ slideId: slide?.id ?? ''});
+    const { isDragging, handleElementMD, handleElementMM, handleElementMU} = DragAndDrop({ 
+        slideId: slide?.id ?? '', 
+        isDraggable: !disableElementDrag});
     const { isResizing, handleResizeMD, handleResizeMM, handleResizeMU} = ResizeElement({ slideId: slide?.id ?? ''});
 
     function onObjectClick(objectId: string): void {
-        dispatch(setSelection, {
-          selectedSlideId: slide?.id,
-          selectedObjectId: objectId,
-        });
+        if(!disableElementDrag)
+        {
+            dispatch(setSelection, {
+                selectedSlideId: slide?.id,
+                selectedObjectId: objectId,
+              });
+        }
       }
 
     const handleSlideClick = () => {
-        if (selectedObjectId) {
+        if(!disableElementDrag && selectedObjectId)
+        {
             dispatch(setSelection, {
                 selectedSlideId: slide?.id,
                 selectedObjectId: null,
@@ -80,7 +95,12 @@ export function DisplaySlide({slide, scale = 1, isSelected, className, selectedO
                 return (
                     <div key={SlideElement.id}
                     onClick={(e) => { e.stopPropagation(); onObjectClick(SlideElement.id); }}
-                    onMouseDown={(event) => handleElementMD(event, SlideElement.id)}
+                    onMouseDown={(event) => {
+                        if(!disableElementDrag)
+                        {
+                            handleElementMD(event, SlideElement.id)
+                        }
+                    }}
                     style={{position: 'relative'}}>
                         {SlideElement.type === "text" && (
                             <TextObject textObject={SlideElement}
